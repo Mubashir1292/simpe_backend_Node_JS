@@ -4,12 +4,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./models/product.model.js");
 const app = express();
-
+const productRoute=require("./routes/product.route.js")
 // ! Adding Middle ware
 app.use(express.json());
 
 //! Adding form Encoded
 app.use(express.urlencoded({extended:false}));
+
+//! routes
+app.use('/api/products',productRoute);
+
 
 //! First connection with database
 mongoose.connect(`mongodb+srv://mubashirliaqat72:adminPassword@samplecluster.hpg7p42.mongodb.net/SAMPLE-NODE-BACKEND-APP?retryWrites=true&w=majority&appName=sampleCluster`)
