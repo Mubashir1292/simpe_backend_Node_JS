@@ -1,13 +1,10 @@
 const express=require("express");
 const router=express.Router();
-const Product=require("../models/product.model.js");
-
-router.get("/api/products",async(req,res)=>{
-    try {
-        const products = await Product.find({});
-        res.status(200).json(products);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-})
+const {getProducts,getSingleProduct, createProduct, updateProduct, deleteProduct}=require("../controller/product.controller.js");
+// route paths...
+router.get("/api/products",getProducts);
+router.get("/api/product/:id",getSingleProduct);
+router.post('/api/createProduct',createProduct);
+router.put('/api/updateProduct/:id',updateProduct);
+router.delete('/api/deleteProduct/:id',deleteProduct);
 module.exports=router;
